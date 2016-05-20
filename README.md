@@ -11,7 +11,8 @@
 ```bash
 $ git clone git@github.com:euclid1990/fruit.git my-proj
 $ cd my-proj
-$ meteor npm install
+$ npm install
+$ typings install
 $ meteor
 ```
 
