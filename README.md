@@ -13,7 +13,6 @@ $ git clone git@github.com:euclid1990/fruit.git my-proj
 $ cd my-proj
 $ npm install
 $ typings install
-$ bower install
 $ meteor
 ```
 
