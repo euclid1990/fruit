@@ -1,2 +1,5 @@
 node_modules/
 typings/
+/.sass-cache/*/*
+*.log
+.DS_Store
