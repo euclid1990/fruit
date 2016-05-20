@@ -1,0 +1,14 @@
+{
+  "name": "fruit",
+  "version": "1.0.0",
+  "description": "Install necessary js and css library",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "bootstrap": "3.3.6"
+  }
+}
