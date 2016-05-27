@@ -1,0 +1,91 @@
+<div class="col-xs-12 col-sm-offset-2 col-sm-8 col-md-offset-3 col-md-6">
+    <div [hidden]="submitted">
+        <h1 class="form-header">Register</h1>
+        <form novalidate (ngSubmit)="onSubmit()" [ngFormModel]="form" #f="ngForm">
+            <div *ngIf="error" class="form-error margin-bottom-15">
+                {{ error }}
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Full name"
+                [(ngModel)]="model.profile.name"
+                ngControl="name"
+                #name="ngForm">
+                <div [hidden]="name.valid || name.pristine" *ngIf="name.errors || name.invalid">
+                    <div *ngIf="name.errors.required" class="form-error">
+                        Name is required
+                    </div>
+                    <div *ngIf="name.errors.minlength || name.errors.maxlength" class="form-error">
+                        Name must be between 3 and 50 characters
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <select class="form-control"
+                    [(ngModel)]="model.profile.gender"
+                    ngControl="gender"
+                    #gender="ngForm">
+                        <option [disabled]="true" [value]="null">Select your gender</option>
+                        <option *ngFor="let g of genders" [value]="g.value">{{ g.name }}</option>
+                </select>
+                <div [hidden]="gender.valid || gender.pristine" *ngIf="gender.errors || gender.invalid" class="form-error">
+                    Gender is required
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Email"
+                [(ngModel)]="model.email"
+                ngControl="email"
+                #email="ngForm">
+                <div [hidden]="email.valid || email.pristine" *ngIf="email.errors || email.invalid">
+                    <div *ngIf="email.errors.required" class="form-error">
+                        Email is required
+                    </div>
+                    <div *ngIf="email.errors.format" class="form-error">
+                        Email is invalid format
+                    </div>
+                    <div *ngIf="email.errors.taken" class="form-error">
+                        Email has already been taken
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" ngControlGroup="passwords">
+                <input type="password" class="form-control" placeholder="Password"
+                [(ngModel)]="model.password"
+                ngControl="password"
+                #password="ngForm">
+                <div [hidden]="password.valid || password.pristine" *ngIf="password.errors || password.invalid">
+                    <div *ngIf="password.errors.required" class="form-error">
+                        Password is required
+                    </div>
+                    <div *ngIf="password.errors.minlength || password.errors.maxlength" class="form-error">
+                        Password must be between 6 and 30 characters
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" ngControlGroup="passwords" #passwords="ngForm">
+                <input type="password" class="form-control" placeholder="Retype password"
+                [(ngModel)]="form.password_confirmation"
+                ngControl="password_confirmation"
+                #password_confirmation="ngForm"
+                [class.invalid]="!passwords.valid">
+                <div [hidden]="password_confirmation.valid || password_confirmation.pristine" *ngIf="password_confirmation.errors || password_confirmation.invalid">
+                    <div *ngIf="password_confirmation.errors.required" class="form-error">
+                        Password Confirmation is required
+                    </div>
+                </div>
+                <div [hidden]="password.pristine || password_confirmation.pristine" *ngIf="passwords.errors || passwords.invalid">
+                    <div class="form-error">
+                        Password confirmation does not match
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-default" (click)="goBack()" >Back</button>
+            <button type="submit" class="btn btn-default" [disabled]="!f.form.valid">Register</button>
+        </form>
+    </div>
+
+    <div [hidden]="!submitted">
+        <h1 class="form-header">Registration Complete !</h1>
+        <div class="text-center">You will be redirected to the Dashboard in {{ second }} seconds</div>
+    </div>
+</div>

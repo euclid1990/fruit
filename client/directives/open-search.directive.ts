@@ -26,8 +26,7 @@ export class OpenSearchDirective {
     ngOnInit() {
         let self = this;
         this.searchForm.on('click keyup', function(event) {
-            console.log(event.keyCode);
-            if (event.target == this || event.keyCode == 27) {
+            if (event.target == this || event.keyCode == 13) {
                 self.closeSearch();
             }
         });
