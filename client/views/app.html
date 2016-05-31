@@ -19,13 +19,14 @@
                 <li class="search-wrap">
                     <a [openSearch]="'div[name=\'search-form\']'" href="javascript:void(0)" name="search-icon" class="search-icon"><i class="glyphicon glyphicon-search"></i></a>
                 </li>
-                <li><a href="#">Login</a></li>
-                <li class="dropdown">
+                <li *ngIf="user === null"><a [routerLink]="['Register']">Register</a></li>
+                <li *ngIf="user === null"><a [routerLink]="['Login']">Login</a></li>
+                <li *ngIf="user !== null" class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Setting <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">Profile</a></li>
                         <li role="separator" class="divider"></li>
-                        <li><a href="#">Logout</a></li>
+                        <li><a [routerLink]="['Logout']">Logout</a></li>
                     </ul>
                 </li>
             </ul>
@@ -41,7 +42,17 @@
 </div>
 
 <div class="container">
-    <a [routerLink]="['Dashboard']">Dashboard</a>
-    <a [routerLink]="['User']">User</a>
-    <router-outlet></router-outlet>
+    <div class="row">
+        <ul class="nav nav-tabs nav-tabs-custom padding-left-right-5">
+            <li role="presentation"
+                [class.active]="router.isRouteActive(router.generate(['/Dashboard']))">
+                <a [routerLink]="['Dashboard']">Dashboard</a>
+            </li>
+            <li role="presentation"
+                [class.active]="router.isRouteActive(router.generate(['/User']))">
+                <a [routerLink]="['User']">User</a>
+            </li>
+        </ul>
+        <router-outlet></router-outlet>
+    </div>
 </div>

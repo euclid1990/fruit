@@ -1,3 +1,39 @@
+@mixin margin-left-right($left, $right) {
+    margin-left: $left;
+    margin-right: $right;
+}
+
+@mixin margin-top-bottom($top, $bottom) {
+    margin-top: $top;
+    margin-bottom: $bottom;
+}
+
+@mixin margin-top($top) {
+    margin-top: $top;
+}
+
+@mixin margin-bottom($bottom) {
+    margin-bottom: $bottom;
+}
+
+@mixin padding-left-right($left, $right) {
+    padding-left: $left;
+    padding-right: $right;
+}
+
+@mixin padding-top-bottom($top, $bottom) {
+    padding-top: $top;
+    padding-bottom: $bottom;
+}
+
+.margin-bottom-15 {
+    @include margin-bottom(15px);
+}
+
+.padding-left-right-5 {
+    @include padding-left-right(5px, 5px);
+}
+
 html {
     width: 100%;
 }
@@ -47,6 +83,32 @@ button, a {
     @media (max-width: 767px) {
         .search-wrap {
             display: none;
+        }
+    }
+}
+
+.nav-tabs-custom {
+    &.nav-tabs {
+        border-bottom: 1px solid #FFA767;
+        >li>a {
+            color: #777;
+            border-width: 3px 1px 1px 1px;
+        }
+        >li.active>a, >li.active>a:focus, >li.active>a:hover {
+            color: #EA6300;
+            cursor: default;
+            background-color: #fff;
+            border: 1px solid #FFA767;
+            border-width: 3px 1px 1px 1px;
+            border-bottom-color: transparent;
+        }
+        li>a:hover {
+            border-color: #FFA767 #FFA767 #FFA767;
+        }
+        >li>a:hover {
+            color: #ffffff;
+            text-decoration: none;
+            background-color: #FFA767;
         }
     }
 }
@@ -107,4 +169,34 @@ button, a {
         padding: 5px 15px;
         font-size: 28px;
     }
+}
+
+/**
+ * Angular2: Add Custom CSS for Visual Feedback;
+ */
+.ng-valid {
+    border-left: 5px solid #42A948; /* green */
+}
+.ng-invalid, .invalid {
+    border-left: 5px solid #a94442; /* red */
+}
+
+/**
+ * Style of Form
+ */
+.form-header {
+    margin: 15px auto;
+    font-size: 20px;
+    color: #666;
+    text-align: center;
+}
+.form-error {
+    font-size: 12px;
+    margin-top: 5px;
+    padding: 5px;
+    color: #a94442;
+    background-color: #f2dede;
+    border: 1px solid transparent;
+    border-color: #dca7a7;
+    border-radius: 4px;
 }
