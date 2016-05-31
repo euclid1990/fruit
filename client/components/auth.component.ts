@@ -10,6 +10,7 @@ import {Router} from '@angular/router-deprecated';
 import {GENDERS, Gender, User, Users, userInitialize} from './../../collections/users';
 import {EmailValidator} from './../validators/email.validator';
 import {PasswordValidator} from './../validators/password.validator';
+import {RouteService} from './../services/route.service';
 import {PrettyPrintPipe} from './../pipes/pretty-print.pipe';
 import {Observable} from 'rxjs/Rx';
 
@@ -30,10 +31,14 @@ export class RegisterComponent {
 
     constructor(private zone: NgZone,
                 private router: Router,
+                private routeService: RouteService,
                 private fb: FormBuilder,
                 private ev: EmailValidator,
                 private pv: PasswordValidator) {
         this.middleware();
+        // No need to decalare provider for RouteService
+        // because RegisterComponent is a child of the AppComponent and therefore receives its parent's service instance.
+        this.routeService.navbar(false);
         this.form = this.fb.group({
             name: ['', Validators.compose([
                 Validators.required,
@@ -112,9 +117,11 @@ export class LoginComponent {
 
     constructor(private zone: NgZone,
                 private router: Router,
+                private routeService: RouteService,
                 private fb: FormBuilder,
                 private ev: EmailValidator) {
         this.middleware();
+        this.routeService.navbar(false);
         this.form = this.fb.group({
             email: ['',
                 Validators.compose([
