@@ -1,0 +1,35 @@
+<div class="col-xs-12">
+    <div class="panel panel-default margin-top-15">
+        <div class="panel-heading">List</div>
+        <ul *ngIf="users" class="list-group">
+            <li class="list-group-item" *ngFor="let user of users | paginate:{ id: 'custom', itemsPerPage: itemsPerPage, currentPage: currentPage.get(), totalItems: totalItems.get() }">
+                <a class="username" [routerLink]="['UserDetail', { id: user.id }]">{{ user.profile.name }}</a>
+                <button type="button" class="btn btn-default btn-xs pull-right" tooltip="" [title]="'Message to ' + user.profile.name" data-toggle="tooltip" [placement]="top"><i class="fa fa-comment" aria-hidden="true"></i></button>
+            </li>
+        </ul>
+        <div class="text-center">
+            <pagination-controls #p id="custom" [maxSize]="maxSize" [directionLinks]="directionLinks" (pageChange)="onPageChange($event)">
+                <ul class="pagination custom-pagination">
+                    <li class="pagination-previous" [class.disabled]="p.isFirstPage()" *ngIf="p.directionLinks">
+                        <a *ngIf="!p.isFirstPage()" (click)="p.previous()" href="javascript:void(0)" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+                        <a *ngIf="p.isFirstPage()" href="javascript:void(0)" aria-label="Previous"><span href="javascript:void(0)" aria-hidden="true">&laquo;</span></a>
+                    </li>
+                    <li *ngFor="let page of p.pages" [class.active]="p.getCurrent() === page.value">
+                        <a (click)="p.setCurrent(page.value)" *ngIf="p.getCurrent() !== page.value" href="javascript:void(0)">
+                            <span>{{ page.label }}</span>
+                        </a>
+                        <a *ngIf="p.getCurrent() === page.value">
+                            <span>{{ page.label }}</span>
+                        </a>
+                    </li>
+
+                    <li class="pagination-next" [class.disabled]="p.isLastPage()" *ngIf="p.directionLinks">
+                        <a *ngIf="!p.isLastPage()" (click)="p.next()" href="javascript:void(0)" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+                        <a *ngIf="p.isLastPage()" href="javascript:void(0)" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+                    </li>
+                </ul>
+            </pagination-controls>
+        </div>
+        <div *ngIf="!users" class="alert alert-info margin-10 padding-10" role="alert">There are no users to display</div>
+    </div>
+</div>

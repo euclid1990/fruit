@@ -9,6 +9,7 @@
     "bower_components"
   ],
   "dependencies": {
-    "bootstrap": "3.3.6"
+    "bootstrap": "3.3.6",
+    "fontawesome": "~4.6.3"
   }
 }

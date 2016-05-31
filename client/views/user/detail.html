@@ -1,0 +1,17 @@
+<div class="col-xs-12">
+    <div *ngIf="user" class="panel panel-default margin-top-15 user-detail">
+        <div class="panel-heading break-word">{{ user.profile.name }}'s Detail</div>
+        <div class="media">
+            <div class="media-left">
+                <img class="media-object" [avatar]="user.profile.gender" src="">
+            </div>
+            <div class="media-body">
+                <p><span class="glyphicon glyphicon-apple" aria-hidden="true"></span> : {{ user.profile.gender_name }}</p>
+                <p><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> : {{ user.profile.email }}</p>
+            </div>
+            <div class="pull-right">
+                <button type="button" class="btn btn-default" (click)="goBack()" >Back</button>
+            </div>
+        </div>
+    </div>
+</div>
