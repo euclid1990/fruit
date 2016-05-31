@@ -43,7 +43,7 @@
 
 <div class="container">
     <div class="row">
-        <ul class="nav nav-tabs nav-tabs-custom padding-left-right-5">
+        <ul *ngIf="navbar" class="nav nav-tabs nav-tabs-custom padding-left-right-5">
             <li role="presentation"
                 [class.active]="router.isRouteActive(router.generate(['/Dashboard']))">
                 <a [routerLink]="['Dashboard']">Dashboard</a>
