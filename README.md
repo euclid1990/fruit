@@ -23,3 +23,9 @@ $ meteor
 ```
 http://localhost:3000/
 ```
+
+## Stop Meteor Server
+
+```bash
+$ sudo kill -9 (lsof -i :3000 -t)
+```

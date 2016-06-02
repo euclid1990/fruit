@@ -30,8 +30,24 @@
     @include margin-bottom(15px);
 }
 
-.padding-left-right-5 {
-    @include padding-left-right(5px, 5px);
+.padding-left-right-15 {
+    @include padding-left-right(15px, 15px);
+}
+
+.margin-top-15 {
+    @include margin-top(15px);
+}
+
+.margin-10 {
+    margin: 10px;
+}
+
+.padding-10 {
+    padding: 10px;
+}
+
+.break-word {
+    word-wrap: break-word;
 }
 
 html {
@@ -199,4 +215,31 @@ button, a {
     border: 1px solid transparent;
     border-color: #dca7a7;
     border-radius: 4px;
+}
+
+/**
+ * User component
+ */
+.user-detail {
+    .media {
+        margin: 10px;
+        word-break: break-all;
+        .media-object {
+            max-height: 64px;
+            max-width: 64px;
+        }
+    }
+}
+ul.custom-pagination {
+    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    clear: left;
+    &:after {
+        content: '';
+        display: inherit;
+    }
+}
+.username {
+    word-wrap: break-word;
 }
