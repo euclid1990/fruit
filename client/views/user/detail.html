@@ -1,12 +1,15 @@
 <div class="col-xs-12">
     <div *ngIf="user" class="panel panel-default margin-top-15 user-detail">
-        <div class="panel-heading break-word">{{ user.profile.name }}'s Detail</div>
+        <div class="panel-heading break-word">
+            <span>{{ user.profile.name }}'s Detail</span>
+            <button *ngIf="userId != user.id" type="button" class="btn btn-default btn-xs pull-right" tooltip="" [title]="'Message to ' + user.profile.name" [placement]="top" (click)="goChat(user.id)"><i class="fa fa-comment" aria-hidden="true"></i></button>
+        </div>
         <div class="media">
             <div class="media-left">
-                <img class="media-object" [avatar]="user.profile.gender" src="">
+                <img class="media-object" [avatar]="user.profile.avatar" src="">
             </div>
             <div class="media-body">
-                <p><span class="glyphicon glyphicon-apple" aria-hidden="true"></span> : {{ user.profile.gender_name }}</p>
+                <p><span class="glyphicon glyphicon-apple" aria-hidden="true"></span> : {{ user.profile.genderName }}</p>
                 <p><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> : {{ user.profile.email }}</p>
             </div>
             <div class="pull-right">

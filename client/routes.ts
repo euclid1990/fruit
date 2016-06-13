@@ -3,6 +3,7 @@ import 'zone.js/dist/zone';
 import {DashboardComponent} from './components/dashboard.component';
 import {UserComponent, UserDetailComponent} from './components/user.component';
 import {RegisterComponent, LoginComponent, LogoutComponent} from './components/auth.component';
+import {ChatComponent, ChatDetailComponent} from './components/chat.component';
 
 export interface Route {
     path: string,
@@ -42,5 +43,15 @@ export const Routes: Route[] = [
         path: '/logout',
         name: 'Logout',
         component: LogoutComponent
+    },
+    {
+        path: '/chat',
+        name: 'Chat',
+        component: ChatComponent
+    },
+    {
+        path: '/chat/:id',
+        name: 'ChatDetail',
+        component: ChatDetailComponent
     }
 ];

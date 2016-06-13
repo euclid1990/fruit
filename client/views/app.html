@@ -52,6 +52,10 @@
                 [class.active]="router.isRouteActive(router.generate(['/User']))">
                 <a [routerLink]="['User']">User</a>
             </li>
+            <li role="presentation"
+                [class.active]="router.isRouteActive(router.generate(['/Chat'])) || isRouteActive('ChatDetail')">
+                <a [routerLink]="['Chat']">Chat</a>
+            </li>
         </ul>
         <router-outlet></router-outlet>
     </div>

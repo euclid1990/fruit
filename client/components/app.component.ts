@@ -48,4 +48,15 @@ export class AppComponent extends MeteorComponent {
             });
         });
     }
+
+    isRouteActive(routerName: string) {
+        // Active link by router name
+        let currentInstruction = this.router.currentInstruction;
+        if (currentInstruction) {
+            if (currentInstruction.component.routeName === routerName) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
