@@ -1,0 +1,33 @@
+<div name="chat" class="col-xs-12">
+    <div class="panel panel-default margin-top-15 direct-chat direct-chat-primary">
+        <div class="panel-heading">
+            <span>Chat</span>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <!-- Contacts are loaded here -->
+            <div class="direct-chat-contacts">
+                <ul class="contacts-list" *ngIf="channels">
+                    <li *ngFor="let channel of channels">
+                        <a (click)="goChatDetail(channel.fromId, channel.targetId)">
+                            <img class="contacts-list-img" [avatar]="(channel.fromId === fromId) ? channel.targetAvatar : channel.fromAvatar" src="" alt="User Image">
+
+                            <div class="contacts-list-info">
+                                <span class="contacts-list-name">
+                                    {{ (channel.fromId === fromId) ? channel.targetName : channel.fromName }}
+                                    <small class="contacts-list-date pull-right">{{ channel.updatedAt | datetime }}</small>
+                                </span>
+                                <span class="contacts-list-msg">{{ channel.message | truncate:true:20:'…'}}</span>
+                            </div>
+                            <!-- /.contacts-list-info -->
+                        </a>
+                    </li>
+                    <!-- End Contact Item -->
+                </ul>
+                <div *ngIf="!channels || !totalChannel.get()" class="alert alert-info margin-10 padding-10" role="alert">There are no conversations to display</div>
+                <!-- /.contatcts-list -->
+            </div>
+            <!-- /.direct-chat-pane -->
+        </div>
+    </div>
+</div>

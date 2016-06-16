@@ -29,3 +29,10 @@ http://localhost:3000/
 ```bash
 $ sudo kill -9 (lsof -i :3000 -t)
 ```
+
+## Connect MongoDB Client
+
+```bash
+$ meteor mongo -U
+```
+This will give you the connection string

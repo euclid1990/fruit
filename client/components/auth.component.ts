@@ -7,11 +7,12 @@ import {MeteorComponent} from 'angular2-meteor';
 import {Component, NgZone} from '@angular/core';
 import {FormBuilder, Control, ControlGroup, Validators} from '@angular/common';
 import {Router} from '@angular/router-deprecated';
-import {GENDERS, Gender, User, Users, userInitialize} from './../../collections/users';
+import {GENDERS, Gender, User, Users, userInitialize, AVATARS} from './../../collections/users';
 import {EmailValidator} from './../validators/email.validator';
 import {PasswordValidator} from './../validators/password.validator';
 import {RouteService} from './../services/route.service';
 import {PrettyPrintPipe} from './../pipes/pretty-print.pipe';
+import * as Helpers from "./../../lib/helpers";
 import {Observable} from 'rxjs/Rx';
 
 @Component({
@@ -86,6 +87,8 @@ export class RegisterComponent {
 
     onSubmit() {
         if (this.form.valid) {
+            // Set avatar for user
+            this.model.profile.avatar = Helpers.randomArray(AVATARS);
             Accounts.createUser(this.model, (err) => {
                 // Execute function synchronously within the Angular zone
                 this.zone.run(() => {

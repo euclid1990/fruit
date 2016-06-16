@@ -3,11 +3,12 @@
         <div class="panel-heading">List</div>
         <ul *ngIf="users" class="list-group">
             <li class="list-group-item" *ngFor="let user of users | paginate:{ id: 'custom', itemsPerPage: itemsPerPage, currentPage: currentPage.get(), totalItems: totalItems.get() }">
+                <img class="user-gender" [gender]="user.profile.gender" src="">
                 <a class="username" [routerLink]="['UserDetail', { id: user.id }]">{{ user.profile.name }}</a>
-                <button type="button" class="btn btn-default btn-xs pull-right" tooltip="" [title]="'Message to ' + user.profile.name" data-toggle="tooltip" [placement]="top"><i class="fa fa-comment" aria-hidden="true"></i></button>
+                <button *ngIf="userId != user.id" type="button" class="btn btn-default btn-xs pull-right" tooltip="" [title]="'Message to ' + user.profile.name" [placement]="top" (click)="goChat(user.id)"><i class="fa fa-comment" aria-hidden="true"></i></button>
             </li>
         </ul>
-        <div class="text-center">
+        <div *ngIf="users" class="text-center">
             <pagination-controls #p id="custom" [maxSize]="maxSize" [directionLinks]="directionLinks" (pageChange)="onPageChange($event)">
                 <ul class="pagination custom-pagination">
                     <li class="pagination-previous" [class.disabled]="p.isFirstPage()" *ngIf="p.directionLinks">

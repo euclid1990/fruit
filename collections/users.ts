@@ -6,6 +6,9 @@ export interface Gender {
     value: string;
 }
 
+export const AVATARS = ["apple.png", "orange.png", "pineapple.png", "tomato.png", "watermelon.png",
+                        "banana.png", "cherry.png", "grape.png", "pear.png", "mangosteen.png"];
+
 export const FEMALE = 'F';
 
 export const MALE = 'M';
@@ -25,8 +28,8 @@ export function genderTransform(item) {
     let gender = GENDERS.filter((e) => {
         return item.profile.gender === e.value;
     });
-    // Add gender_name attribute
-    item.profile.gender_name = gender.shift().name;
+    // Add genderName attribute
+    item.profile.genderName = gender.shift().name;
     return item;
 }
 
@@ -52,6 +55,7 @@ export type User = {
     profile: {
         name: string;
         gender: string;
+        avatar: string;
     };
 }
 
@@ -61,14 +65,21 @@ export interface IUser {
     profile: {
         name: string;
         gender: string;
-        gender_name: string;
+        genderName: string;
         email: string;
+        avatar: string;
     };
 }
 
 export function userInitialize() {
     return Object.create({
-        profile: Object.create(null)
+        profile: Object.create({
+            name: null,
+            gender: null,
+            genderName: null,
+            email: null,
+            avatar: null,
+        })
     });
 }
 

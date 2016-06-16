@@ -1,6 +1,5 @@
 import {Directive, ElementRef, Renderer} from '@angular/core';
 import {Input, Output, EventEmitter} from '@angular/core';
-import {FEMALE, MALE} from './../../collections/users';
 
 @Directive({
     selector: '[avatar]'
@@ -9,17 +8,12 @@ import {FEMALE, MALE} from './../../collections/users';
 export class AvatarDirective {
 
     private selector: any;
-    private gender: string;
+    private base: string = "/img/";
 
     @Input('avatar') set content(value: string) {
-        this.gender = value;
+        let src = this.base + value;
+        this.el.nativeElement.getAttributeNode("src").value = src;
     }
 
-    constructor(el: ElementRef, renderer: Renderer) {
-        let src = '/img/female_avatar.png';
-        if (this.gender == MALE) {
-            src = '/img/male_avatar.png';
-        }
-        el.nativeElement.getAttributeNode("src").value = src;
-    }
+    constructor(public el: ElementRef, public renderer: Renderer) { }
 }
